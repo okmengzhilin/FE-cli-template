@@ -1,0 +1,2 @@
+# FE-cli-template
+template
