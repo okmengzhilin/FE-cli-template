@@ -1,0 +1,13 @@
+{
+    "sourceMap":{
+        "prodSourceMap":false,
+        "devJsSourceMap":true,
+        "devCssSourceMap":true
+    },
+
+    "tools":{
+        "autoOpenBrowser":true,
+        "openUrl":"http://localhost:3002",
+        "autoReload":true
+    }
+}
