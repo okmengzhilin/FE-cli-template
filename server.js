@@ -5,6 +5,7 @@ const path = require("path");
 const yargs = require("yargs");
 const opn = require('opn');
 
+const proxy = require('http-proxy-middleware');
 const bodyParser = require("body-parser");
 
 const tools = require("./modules/tools.js");
@@ -12,7 +13,9 @@ const {e,n,p} = tools.getCliParams();
 const config = tools.getConfig();
 
 const router = require("./api/router.js");
-const api = require("./api/api.js");  
+const api = require("./api/api.js");
+
+const proxyList = require("./modules/config/proxy.js");
 
 var webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
@@ -50,6 +53,11 @@ if(e === "develop"){
     if(config.tools.autoOpenBrowser){
         opn(config.tools.openUrl);
     }
+
+    // 创建proxy
+    Object.keys(proxyList).forEach((item)=>{
+        app.use(proxy(item,proxyList[item]))
+    })
 
     //监听端口
     app.listen(app.get('port'), () => {
