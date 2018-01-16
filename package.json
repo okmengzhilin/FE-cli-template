@@ -1,9 +1,9 @@
 {
-  "name": "FE-template",
+  "name": "vue-common-cli",
   "version": "0.0.1",
   "description": "fe project-cli",
   "main": "main.js",
-  "repository": "git@github.com:okmengzhilin/FE-cli-template.git",
+  "repository": "git@github.com:okmengzhilin/vue-common-cli.git",
   "author": "Lin",
   "license": "MIT",
   "scripts": {

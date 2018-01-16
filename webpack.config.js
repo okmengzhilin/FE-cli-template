@@ -11,12 +11,15 @@ var plugins = require(path.join(__dirname,"modules/config/plugins.js"));
 var loaders = require(path.join(__dirname,"modules/config/loaders.js"));
 var alias = require(path.join(__dirname,"modules/config/alias.js"));
 var allLibs = require(path.join(__dirname,"modules/config/libs.js"));
-var useLibs = require("./projects/"+n+"/src/view.js").chunks;
+var useLibs = require("./projects/"+n+"/src/view.js").libs;
 
-
-var entry = {};
+var entry = {
+    vendor:[]
+};
 useLibs.forEach(item => {
-    entry[item] = allLibs[item];
+    if(allLibs[item]){
+        entry.vendor = entry.vendor.concat(allLibs[item]);
+    }
 });
 entry["main"] = [
     path.join(__dirname,"./projects/"+n+"/src/main.js")

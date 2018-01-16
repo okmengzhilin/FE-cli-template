@@ -1,42 +1,31 @@
+
 const express = require('express');
 const app = express();
 
 const path = require("path");
-const yargs = require("yargs");
-const opn = require('opn');
 
-const proxy = require('http-proxy-middleware');
-const bodyParser = require("body-parser");
+const opn = require('opn');
 
 const tools = require("./modules/tools.js");
 const {e,n,p} = tools.getCliParams();
 const config = tools.getConfig();
 
-const router = require("./api/router.js");
-const api = require("./api/api.js");
+const proxy = require('http-proxy-middleware');
+let proxyList = [];
+try{
+    proxyList = require(path.join(__dirname,"./projects/"+n+"/src/proxy.js"));
+}catch(err){
+    console.log("未添加本地代理")
+}
 
-const proxyList = require("./modules/config/proxy.js");
 
 var webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
-
-
-// 配置请求参数处理工具
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
-//路由设置
-app.use("/gui/",router);
-app.use("/api/",api);
 
 //设置端口
 app.set('port', p?p:3000);
 
 // webpack配置
-
-
 if(e === "develop"){
     var compiler = webpack(webpackConfig);
     var webpackDev = require('webpack-dev-middleware')(compiler, {
@@ -72,5 +61,3 @@ if(e === "develop"){
         process.stdout.write(stats.toString() + '\n\n');
     });
 }
-
-

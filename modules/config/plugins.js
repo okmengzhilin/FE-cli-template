@@ -13,13 +13,7 @@ if(e === "production"){
     pageInfo.hash = true;
 }
 
-var useLibs = pageInfo.chunks.map((item)=>{
-    return item
-});
-
-pageInfo.chunks.push("main");
-
-console.log(useLibs);
+pageInfo.chunks = ["vendor","main"];
 
 //配置插件
 var plugins = [
@@ -28,9 +22,10 @@ var plugins = [
 
     //提取相同js文件中相同的部分
     new webpack.optimize.CommonsChunkPlugin({
-        names:useLibs,
-        filename:"js/[name].bundle.js",
-        minChunks: 2,
+        // names:useLibs,
+        name:"vendor",
+        filename:"js/vendor.bundle.js",
+        minChunks: Infinity,
     })
 ]
 
