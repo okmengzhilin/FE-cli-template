@@ -62,7 +62,7 @@
 
 ——开发——
 
-1. 在projects目录下新建项目，项目结构如上描述
+1. 在projects目录下新建项目，项目结构如上描述，项目demo：[查看demo](https://github.com/okmengzhilin/vue-common-cli-demo)
 
 2. 配置view.js，如下所示
 
