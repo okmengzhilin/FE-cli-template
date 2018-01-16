@@ -7,7 +7,7 @@
 
     "tools":{
         "autoOpenBrowser":true,
-        "openUrl":"http://localhost:3002",
+        "openUrl":"http://localhost:3001",
         "autoReload":true
     }
 }

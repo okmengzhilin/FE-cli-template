@@ -37,6 +37,7 @@ var webpackConfig = {
 	output:{
 		path:path.join(__dirname,"./projects/"+n+"/online"),
         filename:'js/[name].bundle.js',
+        // publicPath:"/"
     },
     module:{
         rules:loaders
